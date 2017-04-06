@@ -1,4 +1,4 @@
-package io.github.galaxyfeeder.mycoindatabse;
+package io.github.galaxyfeeder.mycoindatabase;
 
 /**
  * CoinData

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.galaxyfeeder.mycoindatabse">
+    package="io.github.galaxyfeeder.mycoindatabase">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="io.github.galaxyfeeder.mycoindatabse.MainActivity">
+        <activity android:name="io.github.galaxyfeeder.mycoindatabase.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.description.LAUNCHER" />
