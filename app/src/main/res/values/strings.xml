@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyCoinDatabase</string>
+    <string name="add_new">Add New</string>
+    <string name="delete_first">Delete First</string>
+    <string name="add">Add</string>
+    <string name="currency">Currency</string>
+    <string name="value">Value</string>
+    <string name="country">Country</string>
+    <string name="year">Year</string>
+    <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
 </resources>

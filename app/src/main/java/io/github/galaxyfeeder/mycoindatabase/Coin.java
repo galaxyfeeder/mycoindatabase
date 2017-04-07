@@ -18,15 +18,15 @@ class Coin {
     private String country;
     private String description;
 
-    public long getId() {
+    long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    void setId(long id) {
         this.id = id;
     }
 
-    public String getCurrency() {
+    String getCurrency() {
         return currency;
     }
 
@@ -34,7 +34,7 @@ class Coin {
         this.currency = currency;
     }
 
-    public double getValue() {
+    double getValue() {
         return value;
     }
 
@@ -42,27 +42,27 @@ class Coin {
         this.value = value;
     }
 
-    public int getYear() {
+    int getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    void setYear(int year) {
         this.year= year;
     }
 
-    public String getCountry() {
+    String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    void setCountry(String country) {
         this.country = country;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 

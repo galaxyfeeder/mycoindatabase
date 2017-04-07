@@ -1,9 +1,5 @@
 package io.github.galaxyfeeder.mycoindatabase;
 
-/**
- * CoinData
- * Created by galaxyfeeder on 06/04/17.
- */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +10,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+/**
+ * CoinData
+ * Created by galaxyfeeder on 06/04/17.
+ */
 
 class CoinData {
 
-    // Database fields
     private SQLiteDatabase database;
-
-    // Helper to manipulate table
     private MySQLiteHelper dbHelper;
-
-    // Here we only select Title and Author, must select the appropriate columns
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
             MySQLiteHelper.COLUMN_CURRENCY, MySQLiteHelper.COLUMN_VALUE};
 
@@ -73,6 +68,22 @@ class CoinData {
 
         // Return the book
         return newCoin;
+    }
+
+    Coin addCoin(Coin coin){
+        ContentValues values = new ContentValues();
+        Log.d("Creating", "Creating " + Double.toString(coin.getValue()) + " " + coin.getCurrency());
+
+        values.put(MySQLiteHelper.COLUMN_CURRENCY, coin.getCurrency());
+        values.put(MySQLiteHelper.COLUMN_VALUE, coin.getValue());
+        values.put(MySQLiteHelper.COLUMN_DESCRIPTION, coin.getDescription());
+        values.put(MySQLiteHelper.COLUMN_YEAR, coin.getYear());
+        values.put(MySQLiteHelper.COLUMN_COUNTRY, coin.getCountry());
+
+        long insertId = database.insert(MySQLiteHelper.TABLE_COINS, null, values);
+        coin.setId(insertId);
+
+        return coin;
     }
 
     void deleteCoin(Coin coin) {

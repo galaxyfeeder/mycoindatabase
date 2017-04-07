@@ -1,17 +1,16 @@
 package io.github.galaxyfeeder.mycoindatabase;
 
-/**
- * MySQLiteHelper
- * Created by galaxyfeeder on 06/04/17.
- */
 import java.util.List;
-import java.util.Random;
 
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+/**
+ * MySQLiteHelper
+ * Created by galaxyfeeder on 06/04/17.
+ */
 
 public class MainActivity extends ListActivity {
     private CoinData coinData;
@@ -33,54 +32,41 @@ public class MainActivity extends ListActivity {
         setListAdapter(adapter);
     }
 
-    // Basic method to add pseudo-random list of books so that
-    // you have an example of insertion and deletion
-
-    // Will be called via the onClick attribute
-    // of the buttons in main.xml
     public void onClick(View view) {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked") final
         ArrayAdapter<Coin> adapter = (ArrayAdapter<Coin>) getListAdapter();
         Coin coin;
         switch (view.getId()) {
             case R.id.add:
-                String[] newCoins = new String[] { "Euro", "Dòlar", "Ien", "Lliura esterlina"};
-                double[] newValues = new double[] { 0.01, 0.05, 0.10, 0.50, 1 };
 
-                int c = new Random().nextInt(4);
-                int v = new Random().nextInt(5);
+                final AddDialog dialog = new AddDialog(this);
+                dialog.setAddListener(new AddListener() {
+                    @Override
+                    public void onAddCoin(Coin coin) {
+                        coinData.addCoin(coin);
+                        adapter.add(coin);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                dialog.show();
 
-                // save the new book to the database
-                if (c == 2) {
-                    coin = coinData.createCoin(newCoins[c], newValues[v]*100);
-                }
-                else {
-                    coin = coinData.createCoin(newCoins[c], newValues[v]);
-                }
-
-                // After I get the book data, I add it to the adapter
-                adapter.add(coin);
                 break;
             case R.id.delete:
                 if (getListAdapter().getCount() > 0) {
                     coin = (Coin) getListAdapter().getItem(0);
                     coinData.deleteCoin(coin);
                     adapter.remove(coin);
+                    adapter.notifyDataSetChanged();
                 }
                 break;
         }
-        adapter.notifyDataSetChanged();
     }
-
-    // Life cycle methods. Check whether it is necessary to reimplement them
 
     @Override
     protected void onResume() {
         coinData.open();
         super.onResume();
     }
-
-    // Life cycle methods. Check whether it is necessary to reimplement them
 
     @Override
     protected void onPause() {
